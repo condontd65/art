@@ -7,8 +7,6 @@ library(data.table)
 library(DescTools)
 library(zoo)
 
-## This is junk now :(   James was speedy with it   Thank James for James 
-
 # Authenticate google
 gs_auth(new_user = TRUE)
 
@@ -276,6 +274,9 @@ colnames(art.rdy) <- c("type", "id", "title", "summary", "location", "latitude",
 # Remove strange strings
 art.rdy <- data.frame(lapply(art.rdy, function(x) {
   gsub("<p>", "", x)
+}))
+art.rdy <- data.frame(lapply(art.rdy, function(x) {
+  gsub("</p>", "", x)
 }))
 
 write.csv(art.rdy, 'art_data.csv', row.names = FALSE)
